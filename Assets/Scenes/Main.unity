@@ -344,7 +344,7 @@ PrefabInstance:
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: signalTimingAlgorithmType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -370,7 +370,7 @@ PrefabInstance:
     - target: {fileID: 7792451276876433468, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: m_BehaviorType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8007035633690914046, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -728,7 +728,7 @@ PrefabInstance:
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: signalTimingAlgorithmType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -754,7 +754,7 @@ PrefabInstance:
     - target: {fileID: 7792451276876433468, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: m_BehaviorType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7792451276876433468, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -908,7 +908,7 @@ PrefabInstance:
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: signalTimingAlgorithmType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5896584559003295629, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -929,7 +929,7 @@ PrefabInstance:
     - target: {fileID: 7792451276876433468, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: m_BehaviorType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8007035633690914046, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -1338,7 +1338,7 @@ PrefabInstance:
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: signalTimingAlgorithmType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -1364,7 +1364,7 @@ PrefabInstance:
     - target: {fileID: 7792451276876433468, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: m_BehaviorType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8007035633690914046, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -1604,7 +1604,7 @@ PrefabInstance:
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: signalTimingAlgorithmType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -1630,7 +1630,7 @@ PrefabInstance:
     - target: {fileID: 7792451276876433468, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: m_BehaviorType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8007035633690914046, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -1956,7 +1956,7 @@ PrefabInstance:
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: signalTimingAlgorithmType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -1982,7 +1982,7 @@ PrefabInstance:
     - target: {fileID: 7792451276876433468, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: m_BehaviorType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8007035633690914046, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -2126,7 +2126,7 @@ PrefabInstance:
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: signalTimingAlgorithmType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -2152,7 +2152,7 @@ PrefabInstance:
     - target: {fileID: 7792451276876433468, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: m_BehaviorType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8007035633690914046, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -2766,7 +2766,7 @@ PrefabInstance:
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: signalTimingAlgorithmType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -2792,7 +2792,7 @@ PrefabInstance:
     - target: {fileID: 7792451276876433468, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: m_BehaviorType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8007035633690914046, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -3043,7 +3043,7 @@ PrefabInstance:
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: signalTimingAlgorithmType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -3069,7 +3069,7 @@ PrefabInstance:
     - target: {fileID: 7792451276876433468, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: m_BehaviorType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8007035633690914046, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -3244,7 +3244,7 @@ PrefabInstance:
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: signalTimingAlgorithmType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -3270,7 +3270,7 @@ PrefabInstance:
     - target: {fileID: 7792451276876433468, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: m_BehaviorType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8007035633690914046, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -3414,7 +3414,7 @@ PrefabInstance:
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: signalTimingAlgorithmType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -3440,7 +3440,7 @@ PrefabInstance:
     - target: {fileID: 7792451276876433468, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: m_BehaviorType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8007035633690914046, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -3898,7 +3898,7 @@ PrefabInstance:
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: signalTimingAlgorithmType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -3924,7 +3924,7 @@ PrefabInstance:
     - target: {fileID: 7792451276876433468, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: m_BehaviorType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8007035633690914046, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -4298,7 +4298,7 @@ PrefabInstance:
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: signalTimingAlgorithmType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -4324,7 +4324,7 @@ PrefabInstance:
     - target: {fileID: 7792451276876433468, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: m_BehaviorType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8007035633690914046, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -4617,7 +4617,7 @@ PrefabInstance:
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: signalTimingAlgorithmType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -4643,7 +4643,7 @@ PrefabInstance:
     - target: {fileID: 7792451276876433468, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: m_BehaviorType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8007035633690914046, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -5030,7 +5030,7 @@ PrefabInstance:
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: signalTimingAlgorithmType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -5056,7 +5056,7 @@ PrefabInstance:
     - target: {fileID: 7792451276876433468, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: m_BehaviorType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8007035633690914046, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -5200,7 +5200,7 @@ PrefabInstance:
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: signalTimingAlgorithmType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -5226,7 +5226,7 @@ PrefabInstance:
     - target: {fileID: 7792451276876433468, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: m_BehaviorType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8007035633690914046, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
