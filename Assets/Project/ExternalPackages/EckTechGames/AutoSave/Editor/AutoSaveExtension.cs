@@ -1,5 +1,4 @@
-﻿#if UNITY_EDITOR
-using System;
+﻿using System;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -44,4 +43,3 @@ namespace EckTechGames.AutoSave
 		}
 	}
 }
-#endif
