@@ -67,7 +67,7 @@ namespace Simulator.ScriptableObject {
                     }
                 }
             }
-            Debug.Log($"Reward function reward: {rewards}");
+            // Debug.Log($"Reward function reward: {rewards}");
             ml_data.rewards = rewards;
             //return (ml_data.observations, rewards);
         }

@@ -98,12 +98,12 @@ namespace Simulator.SignalTiming {
         // Method to log interval data
         private void LogIntervalData() {
             float currentSimulationTime = Time.time - simulationStartTime;
-            
+
             if (currentSimulationTime >= lastLogTime + loggingInterval) {
                 var intersectionData = trafficLightSetup?.GetComponent<IntersectionDataCalculator>();
-                
+
                 if (intersectionData != null) {
-                    
+
                     intervalLogger.LogRow(
                         currentSimulationTime,
                         episodeCounter,
@@ -116,12 +116,12 @@ namespace Simulator.SignalTiming {
                         greenLightTime
                     );
                 }
-                
+
                 lastLogTime = currentSimulationTime;
                 // Debug.Log($"Interval data logged at simulation time: {currentSimulationTime:F1}s");
             }
         }
-        
+
         // Update method to handle interval logging
         private void Update() {
             // Log data at specified intervals
@@ -159,7 +159,7 @@ namespace Simulator.SignalTiming {
             AddReward(Ml_data.rewards);
             //Debug.Log($"Reward given: {Ml_data.rewards}");
             //Debug.Log(GetCumulativeReward());
-            
+
             // float fuel = GameManager.Instance.TotalFuelUsed;
 
             // LOG EPISODE DATA BEFORE ENDING
@@ -229,6 +229,15 @@ namespace Simulator.SignalTiming {
         [ContextMenu("Save CSV Data")]
         public void ManualSave() {
             SaveAllData();
+        }
+
+        public float GetReward() {
+            return Ml_data.rewards;
+        }
+
+        public int GetTotalVehicles() {
+            var dataCalc = trafficLightSetup.GetComponent<IntersectionDataCalculator>();
+            return dataCalc != null ? dataCalc.TotalNumberOfVehicles : 0;
         }
     }
 }

@@ -80,20 +80,19 @@ namespace Simulator.TrafficSignal {
 
             // — enable only the chosen controller:
             var staticCtrl = GetComponent<StaticSignalController>();
-            var mlAgent   = GetComponent<TrafficSignalMlAgent>();
-            switch (signalTimingAlgorithmType)
-            {
+            var mlAgent = GetComponent<TrafficSignalMlAgent>();
+            switch (signalTimingAlgorithmType) {
                 case TrafficSignalAlogrithm.Static:
                     staticCtrl.enabled = true;
-                    mlAgent.enabled    = false;
+                    mlAgent.enabled = false;
                     break;
                 case TrafficSignalAlogrithm.SignalOptimizationML:
                     staticCtrl.enabled = false;
-                    mlAgent.enabled    = true;
+                    mlAgent.enabled = true;
                     break;
                 default:
                     staticCtrl.enabled = false;
-                    mlAgent.enabled    = false;
+                    mlAgent.enabled = false;
                     break;
             }
 
@@ -178,7 +177,8 @@ namespace Simulator.TrafficSignal {
                     case TrafficSignalAlogrithm.Static:
                         if (staticSignalAlgorithm != null) {
                             (tempNextPhaseIndex, tempNextPhaseGreenLightTime) = staticSignalAlgorithm.GetNextPhase(intersectionDataCalculator, CurrentPhaseIndex);
-                        } else {
+                        }
+                        else {
                             // Fallback: use default phase timings
                             (tempNextPhaseIndex, tempNextPhaseGreenLightTime) = (-1, -1);
                         }
@@ -188,7 +188,7 @@ namespace Simulator.TrafficSignal {
                         break;
                     case TrafficSignalAlogrithm.SignalOptimizationML:
                         mlSignalTimingAlgorithm.CalculateRewards(intersectionDataCalculator, mLSignalAgent.Ml_data);
-                        Debug.Log($"Reward after function reward: {mLSignalAgent.Ml_data.rewards}");
+                        // Debug.Log($"Reward after function reward: {mLSignalAgent.Ml_data.rewards}");
 
                         (tempNextPhaseIndex, tempNextPhaseGreenLightTime) = mLSignalAgent.GenerateAction();
                         break;
@@ -254,6 +254,10 @@ namespace Simulator.TrafficSignal {
                 if (sp == splineIndex) return Phases[CurrentPhaseIndex].greenLightTime - timePassed;
             }
             return -1;
+        }
+
+        public float GetGreenLightTime() {
+            return greenLightTime;
         }
 
     }
