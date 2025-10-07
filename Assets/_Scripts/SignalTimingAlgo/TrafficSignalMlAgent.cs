@@ -58,7 +58,7 @@ namespace Simulator.SignalTiming {
             trafficLightSetup = GetComponent<TrafficLightSetup>();
             phases = trafficLightSetup.Phases;
             Ml_data.observations = new float[Ml_data.OFSET + (Ml_data.NUM_OF_LEGS * Ml_data.NUM_OF_VEHICLES_PER_LEG * Ml_data.NUM_OF_OBSERVATIONS_PER_VEHICLE)];
-
+            Debug.Log("I am PPO Agent");
             // INITIALIZE LOGGERS
             episodeLogger = new CsvLogger("episode_results.csv",
                 "Episode",

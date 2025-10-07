@@ -59,14 +59,27 @@ public class SimulationStatsUI : MonoBehaviour
 
         // 5. Total Throughput
         // var dataCalc = observedIntersection.GetComponent<IntersectionDataCalculator>();
-        int totalThroughput = mlAgent != null
-            ? mlAgent.GetTotalVehicles()
+        // int totalThroughput = mlAgent != null
+        //     ? mlAgent.GetTotalVehicles()
+        //     : 0;
+        int totalThroughput = observedIntersection != null
+            ? observedIntersection.GetVehiclesCleared()
             : 0;
+        
+        int timePassed = observedIntersection != null
+            ? observedIntersection.GetTimePassed()
+            : 0;
+        
+        float throughput = timePassed > 0 ? (float)totalThroughput / timePassed * 60 : 0f;
 
         // Display without penalty
         statsText.text =
-            $"<b>Algo:</b> {algorithm}  |  <b>Phase:</b> {currentPhase}  |  <b>Timing:</b> {phaseTiming:F1}s\n" +
-            $"<b>Reward:</b> {reward:F2}  |  <b>Throughput:</b> {totalThroughput}";
+            $"<b>Algorithm: </b> {algorithm}\n" +
+            $"<b>Phase: </b> {currentPhase}\n" +
+            $"<b>Timing: </b> {phaseTiming:F1}s\n" +
+            $"<b>Reward: </b> {reward:F2}\n" +
+            $"<b>Vehicles Cleared: </b> {totalThroughput}\n" +
+            $"<b>Throughput: </b> {throughput:F2} v/min";
     }
 
     private string GetAlgorithmName()

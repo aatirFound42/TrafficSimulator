@@ -227,6 +227,89 @@ class TrafficSignalComparison:
         plt.tight_layout()
         plt.savefig('interval_data_comparison.png', dpi=300, bbox_inches='tight')
         plt.show()
+
+    def plot_full_queue_length(self):
+        """Plot queue length over the full simulation for both ML and Static."""
+        ml_intervals = self.ml_data['intervals']
+        static_intervals = self.static_data['intervals']
+        fig, ax = plt.subplots(figsize=(16, 6))
+
+        # Plot full time series
+        ax.plot(
+            ml_intervals['SimulationTime'],
+            ml_intervals['QueueLength'],
+            label='PPO Agent',
+            color='#2E86AB',
+            linewidth=2
+        )
+        ax.plot(
+            static_intervals['SimulationTime'],
+            static_intervals['QueueLength'],
+            label='Static Controller',
+            color='#F24236',
+            linewidth=2
+        )
+
+        ax.set_title('Full Simulation Queue Length: PPO vs Static', fontsize=16, fontweight='bold')
+        ax.set_xlabel('Simulation Time (s)', fontsize=14)
+        ax.set_ylabel('Queue Length', fontsize=14)
+        ax.legend(fontsize=12)
+        ax.grid(True, alpha=0.3)
+
+        plt.tight_layout()
+        out_path = 'full_queue_length_comparison.png'
+        plt.savefig(out_path, dpi=300, bbox_inches='tight')
+        plt.show()
+        print(f"✅ Full simulation queue length plot saved as '{out_path}'")
+    
+    def plot_both_full_queue(self):
+        """Plot queue length over the full simulation separately for ML and Static with equal axes and large bold fonts."""
+        ml = self.ml_data['intervals']
+        st = self.static_data['intervals']
+
+        # Compute global x and y limits
+        all_times = pd.concat([ml['SimulationTime'], st['SimulationTime']])
+        all_queues = pd.concat([ml['QueueLength'], st['QueueLength']])
+        xmin, xmax = all_times.min(), all_times.max()
+        ymin, ymax = all_queues.min(), all_queues.max()
+
+        axis_font = {'fontsize': 22, 'fontweight': 'bold'}
+        tick_font = {'fontsize': 20, 'fontweight': 'bold'}
+
+        # PPO Agent plot
+        plt.figure(figsize=(16, 6))
+        plt.plot(ml['SimulationTime'], ml['QueueLength'], color='#2E86AB', linewidth=2)
+        plt.title('Full Simulation Queue Length: PPO Agent', fontsize=24, fontweight='bold')
+        plt.xlabel('Simulation Time (s)', **axis_font)
+        plt.ylabel('Queue Length', **axis_font)
+        plt.xlim(xmin, xmax)
+        plt.ylim(ymin, ymax)
+        plt.grid(True, alpha=0.3)
+        plt.xticks(fontsize=tick_font['fontsize'], fontweight=tick_font['fontweight'])
+        plt.yticks(fontsize=tick_font['fontsize'], fontweight=tick_font['fontweight'])
+        plt.tight_layout()
+        ppo_path = 'full_queue_length_ppo.png'
+        plt.savefig(ppo_path, dpi=300, bbox_inches='tight')
+        plt.show()
+        print(f"✅ Saved PPO queue length plot as '{ppo_path}'")
+
+        # Static Controller plot
+        plt.figure(figsize=(16, 6))
+        plt.plot(st['SimulationTime'], st['QueueLength'], color='#F24236', linewidth=2)
+        plt.title('Full Simulation Queue Length: Static Controller', fontsize=24, fontweight='bold')
+        plt.xlabel('Simulation Time (s)', **axis_font)
+        plt.ylabel('Queue Length', **axis_font)
+        plt.xlim(xmin, xmax)
+        plt.ylim(ymin, ymax)
+        plt.grid(True, alpha=0.3)
+        plt.xticks(fontsize=tick_font['fontsize'], fontweight=tick_font['fontweight'])
+        plt.yticks(fontsize=tick_font['fontsize'], fontweight=tick_font['fontweight'])
+        plt.tight_layout()
+        static_path = 'full_queue_length_static.png'
+        plt.savefig(static_path, dpi=300, bbox_inches='tight')
+        plt.show()
+        print(f"✅ Saved Static queue length plot as '{static_path}'")
+
         
     def statistical_comparison(self):
         """Perform statistical comparison between ML and Static approaches"""
@@ -453,26 +536,33 @@ class TrafficSignalComparison:
         
         # Generate all comparisons
         print("\n📊 Generating episode performance comparison...")
-        self.compare_episode_performance()
+        # self.compare_episode_performance()
         
         print("\n📈 Generating interval data comparison...")
-        self.compare_interval_data()
+        # self.compare_interval_data()
         
-        # NEW: Generate first half data comparisons
+        # Generate first half data comparisons
         print("\n🚗 Generating detailed vehicles waiting comparison (first half)...")
-        self.create_vehicles_waiting_comparison_half()
+        # self.create_vehicles_waiting_comparison_half()
         
         print("\n🚦 Generating detailed queue length comparison (first half)...")
-        self.create_queue_length_comparison_half()
+        # self.create_queue_length_comparison_half()
         
         print("\n🔍 Performing statistical analysis...")
-        summary_df = self.statistical_comparison()
+        # summary_df = self.statistical_comparison()
         
         print("\n📋 Generating performance report...")
-        self.generate_performance_report()
+        # self.generate_performance_report()
         
         print("\n📊 Creating comprehensive dashboard...")
-        self.create_dashboard()
+        # self.create_dashboard()
+        
+        print("\n📊 Generating full simulation queue length comparison...")
+        # self.plot_full_queue_length()
+
+        print("\n📊 Generating full simulation queue length for both seperately...")
+        self.plot_both_full_queue()
+
         
         print("\n✅ Analysis complete! Check the generated PNG files and CSV summary.")
         

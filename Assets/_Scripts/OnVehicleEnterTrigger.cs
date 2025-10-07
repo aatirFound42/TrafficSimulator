@@ -12,6 +12,8 @@ namespace Simulator {
             if (!other.CompareTag("Vehicle"))
                 return;
             intersectionDataCalculator.VehicleEntered(other.transform.GetComponent<VehicleDataCalculator>(), legIndex);
+            // Debug.Log($"[Enter] Vehicle {other.name} on leg {legIndex} at time {Time.time}");
+
         }
         #endregion
     }

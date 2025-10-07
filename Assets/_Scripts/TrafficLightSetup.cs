@@ -149,10 +149,12 @@ namespace Simulator.TrafficSignal {
         }
 
         private int timePassed = 0;
+        private int totalTimeOfSimulation = 0;
         IEnumerator Tick() {
             while (true) {
                 OnTickComplete.Invoke();
                 timePassed++;
+                totalTimeOfSimulation++;
                 yield return new WaitForSeconds(1f);
             }
         }
@@ -258,6 +260,14 @@ namespace Simulator.TrafficSignal {
 
         public float GetGreenLightTime() {
             return greenLightTime;
+        }
+
+        public int GetVehiclesCleared() {
+            return intersectionDataCalculator.GetVehiclesCleared();
+        }
+
+        public int GetTimePassed() {
+            return totalTimeOfSimulation;
         }
 
     }

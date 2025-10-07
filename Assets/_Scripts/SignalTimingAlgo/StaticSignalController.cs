@@ -135,7 +135,7 @@ public class StaticSignalController : MonoBehaviour {
         
         episodeCounter += 1;
         episodeStartTime = Time.time; // optional: reset episode clock
-        intersectionDataCalculator.totalFuelConsumed = 0f;
+        // intersectionDataCalculator.totalFuelConsumed = 0f;
     }
 
     // float CalculateAverageWaitTime() {
