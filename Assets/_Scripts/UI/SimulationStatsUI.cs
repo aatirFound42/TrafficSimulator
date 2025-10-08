@@ -35,10 +35,8 @@ public class SimulationStatsUI : MonoBehaviour
         }
     }
 
-    private void UpdateStatsDisplay()
-    {
-        if (observedIntersection == null || statsText == null)
-        {
+    private void UpdateStatsDisplay() {
+        if (observedIntersection == null || statsText == null) {
             statsText.text = "No data source found";
             return;
         }
@@ -65,21 +63,56 @@ public class SimulationStatsUI : MonoBehaviour
         int totalThroughput = observedIntersection != null
             ? observedIntersection.GetVehiclesCleared()
             : 0;
-        
+
         int timePassed = observedIntersection != null
             ? observedIntersection.GetTimePassed()
             : 0;
-        
+
         float throughput = timePassed > 0 ? (float)totalThroughput / timePassed * 60 : 0f;
 
         // Display without penalty
-        statsText.text =
+        if (algorithm == "Static") {
+            statsText.text =
+            $"<b>Algorithm: </b> Fixed-time plan\n" +
+            $"<b>Phase: </b> {currentPhase}\n" +
+            $"<b>Timing: </b> {phaseTiming:F1}s\n" +
+            // $"<b>Vehicles Waiting: </b> {observedIntersection.GetVehiclesWaiting()}\n" +
+            // $"<b>Average Queue Length: </b> {observedIntersection.GetVehiclesWaiting()/4:F2}\n" +
+            $"<b>Vehicles Cleared: </b> {totalThroughput}\n" +
+            $"<b>Throughput: </b> {throughput:F2} v/min";
+        }
+        else if (algorithm == "PPO") {
+            statsText.text =
+            $"<b>Algorithm: </b> ML Agent Controller\n" +
+            $"<b>Phase: </b> {currentPhase}\n" +
+            $"<b>Timing: </b> {phaseTiming:F1}s\n" +
+            $"<b>Reward: </b> {reward:F2}\n" +
+            // $"<b>Vehicles Waiting: </b> {observedIntersection.GetVehiclesWaiting()}\n" +
+            // $"<b>Average Queue Length: </b> {observedIntersection.GetVehiclesWaiting()/4:F2}\n" +
+            $"<b>Vehicles Cleared: </b> {totalThroughput}\n" +
+            $"<b>Throughput: </b> {throughput:F2} v/min";
+        }
+        else if (algorithm == "Dynamic") {
+            statsText.text =
+            $"<b>Algorithm: </b> Dynamic time plan\n" +
+            $"<b>Phase: </b> {currentPhase}\n" +
+            $"<b>Timing: </b> {phaseTiming:F1}s\n" +
+            // $"<b>Vehicles Waiting: </b> {observedIntersection.GetVehiclesWaiting()}\n" +
+            // $"<b>Average Queue Length: </b> {observedIntersection.GetVehiclesWaiting()/4:F2}\n" +
+            $"<b>Vehicles Cleared: </b> {totalThroughput}\n" +
+            $"<b>Throughput: </b> {throughput:F2} v/min";
+        }
+        else {
+            statsText.text =
             $"<b>Algorithm: </b> {algorithm}\n" +
             $"<b>Phase: </b> {currentPhase}\n" +
             $"<b>Timing: </b> {phaseTiming:F1}s\n" +
             $"<b>Reward: </b> {reward:F2}\n" +
+            // $"<b>Vehicles Waiting: </b> {observedIntersection.GetVehiclesWaiting()}\n" +
+            // $"<b>Average Queue Length: </b> {observedIntersection.GetVehiclesWaiting()/4:F2}\n" +
             $"<b>Vehicles Cleared: </b> {totalThroughput}\n" +
             $"<b>Throughput: </b> {throughput:F2} v/min";
+        }
     }
 
     private string GetAlgorithmName()

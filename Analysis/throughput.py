@@ -21,12 +21,12 @@ def calc_avg_throughput(csv_path):
         print(f"❌ Required columns missing in {csv_path}")
         return None
     throughput = safe_divide(df['VehiclesWaiting'], df[denom_col])
-    avg_throughput = throughput.mean(skipna=True)
+    avg_throughput = throughput.mean(skipna=True) * 60 # Convert to per minute
     print(f"{csv_path} average throughput ({denom_col}): {avg_throughput:.4f}")
     return avg_throughput
 
 # Run calculation for both CSVs
 ml_avg = calc_avg_throughput(ml_csv)
 static_avg = calc_avg_throughput(static_csv)
-improvement = -(ml_avg - static_avg) / static_avg if static_avg else None
+improvement = (ml_avg - static_avg) / static_avg if static_avg else None
 print(f"Improvement: {improvement:.4%}" if improvement is not None else "Improvement: N/A")

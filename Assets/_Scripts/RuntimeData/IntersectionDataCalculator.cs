@@ -21,6 +21,7 @@ namespace Simulator.TrafficSignal {
 
         private int throughput = 0;
         private int vehiclesCleared = 0;
+        // private int vehiclesWaiting = 0;
         // Dictionary value: (legIndex, wait time at interection)
         //private readonly Dictionary<VehicleDataCalculator, (int, float)> vehiclesWaitingInIntersection = new();
 
@@ -98,5 +99,18 @@ namespace Simulator.TrafficSignal {
         public void SetVehiclesCleared(int value) {
             vehiclesCleared = value;
         }
+
+        // public int GetVehiclesWaiting() {
+        //     return vehiclesWaiting;
+        // }
+        // public void SetVehiclesWaiting(int value) {
+        //     vehiclesWaiting = value;
+        // }
+        // public void DecreaseVehiclesWaiting() {
+        //     --vehiclesWaiting;
+        // }
+        // public void IncreaseVehiclesWaiting() {
+        //     ++vehiclesWaiting;
+        // }
     }
 }

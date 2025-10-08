@@ -25,6 +25,7 @@ namespace Simulator {
             ++count;
             // Debug.Log($"Exit count: {count}");
             intersectionDataCalculator.SetVehiclesCleared(count);
+            // intersectionDataCalculator.DecreaseVehiclesWaiting();
         }
 
         #endregion

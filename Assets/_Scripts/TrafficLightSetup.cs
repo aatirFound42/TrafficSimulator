@@ -265,6 +265,9 @@ namespace Simulator.TrafficSignal {
         public int GetVehiclesCleared() {
             return intersectionDataCalculator.GetVehiclesCleared();
         }
+        // public int GetVehiclesWaiting() {
+        //     return intersectionDataCalculator.GetVehiclesWaiting();
+        // }
 
         public int GetTimePassed() {
             return totalTimeOfSimulation;
