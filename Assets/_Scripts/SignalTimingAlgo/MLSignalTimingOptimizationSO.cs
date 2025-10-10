@@ -55,7 +55,7 @@ namespace Simulator.ScriptableObject {
             lastTime = time;
             lastTotalNumberOfVehicles = intersectionDataCalculator.TotalNumberOfVehicles;
             CheckVehicles(intersectionDataCalculator, ml_data);
-
+            Debug.Log($"Throughput: {throughput}");
             float rewards = throughput * REWARD_MULTIPLYER;
             //float rewards = 0;
 
@@ -67,7 +67,7 @@ namespace Simulator.ScriptableObject {
                     }
                 }
             }
-            Debug.Log($"Reward function reward: {rewards}");
+            // Debug.Log($"Reward function reward: {rewards}");
             ml_data.rewards = rewards;
             //return (ml_data.observations, rewards);
         }

@@ -20,6 +20,8 @@ namespace Simulator.TrafficSignal {
 
 
         private int throughput = 0;
+        private int vehiclesCleared = 0;
+        // private int vehiclesWaiting = 0;
         // Dictionary value: (legIndex, wait time at interection)
         //private readonly Dictionary<VehicleDataCalculator, (int, float)> vehiclesWaitingInIntersection = new();
 
@@ -29,7 +31,7 @@ namespace Simulator.TrafficSignal {
 
         private string Name;
 
-        public float totalFuelConsumed = 0f;
+        // public float totalFuelConsumed = 0f;
 
         #region Unity Methods
         private void Awake() {
@@ -40,7 +42,7 @@ namespace Simulator.TrafficSignal {
             }
         }
         private void Start() {
-            totalFuelConsumed = 0f;
+            // totalFuelConsumed = 0f;
             StartCoroutine(Tick());
         }
         #endregion
@@ -65,6 +67,9 @@ namespace Simulator.TrafficSignal {
             TotalNumberOfVehicles++;
             //vehiclesInLeg[legIndex]++;
             TotalNumberOfVehiclesWaitingInIntersection++;
+            // Debug.Log($"Vehicle {vehicleDataCalculator.name} entered intersection {Name} at leg {legIndex}");
+            // Debug.Log($"Entered: Total={TotalNumberOfVehicles}, Waiting={TotalNumberOfVehiclesWaitingInIntersection}");
+            // Debug.Log($"TotalNumberOfVehicles: {TotalNumberOfVehicles}, TotalNumberOfVehiclesWaitingInIntersection: {TotalNumberOfVehiclesWaitingInIntersection}");
         }
 
         internal void VehicleExited(VehicleDataCalculator vehicleDataCalculator) {
@@ -75,12 +80,37 @@ namespace Simulator.TrafficSignal {
                     waitTimeAtIntersection = Mathf.RoundToInt(vehicleDataCalculator.TotalWaitTime - t);
                     StoreData.WriteIntesectionWaitTime(Name, vehicleDataCalculator.name, waitTimeAtIntersection);
                     TotalNumberOfVehiclesWaitingInIntersection--;
-                    totalFuelConsumed += vehicleDataCalculator.FuelUsed;
+                    vehiclesCleared++;
+                    // Debug.Log($"Vehicle {vehicleDataCalculator.name} exited intersection {Name} from leg {i}. Wait time at intersection: {waitTimeAtIntersection} seconds");
+                    // Debug.Log($"Vehicles Cleared: {vehiclesCleared}, TotalNumberOfVehiclesWaitingInIntersection: {TotalNumberOfVehiclesWaitingInIntersection}");
+                    Debug.Log($"Exited: Waiting={TotalNumberOfVehiclesWaitingInIntersection}");
+                    // totalFuelConsumed += vehicleDataCalculator.FuelUsed;
                     GameManager.Instance.TotalFuelUsed += vehicleDataCalculator.FuelUsed;
                     break;
                 }
 
             }
         }
+
+        public int GetVehiclesCleared() {
+            return vehiclesCleared;
+        }
+
+        public void SetVehiclesCleared(int value) {
+            vehiclesCleared = value;
+        }
+
+        // public int GetVehiclesWaiting() {
+        //     return vehiclesWaiting;
+        // }
+        // public void SetVehiclesWaiting(int value) {
+        //     vehiclesWaiting = value;
+        // }
+        // public void DecreaseVehiclesWaiting() {
+        //     --vehiclesWaiting;
+        // }
+        // public void IncreaseVehiclesWaiting() {
+        //     ++vehiclesWaiting;
+        // }
     }
 }
