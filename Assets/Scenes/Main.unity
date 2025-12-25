@@ -4611,7 +4611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aa21a3611fe97544b10a1d3061106ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statsText: {fileID: 0}
+  statsText: {fileID: 922338580}
   observedIntersection: {fileID: 286320670}
   mlAgent: {fileID: 286320669}
   updateFrequency: 0.1
