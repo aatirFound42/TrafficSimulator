@@ -948,7 +948,7 @@ Tick this box to use custom implementation.", MessageType.Info);
 
             if ((bool)FastScriptReloadPreference.StopShowingAutoReloadEnabledDialogBox.GetEditorPersistedValueOrDefault())
                 return;
-
+            
             var chosenOption = EditorUtility.DisplayDialogComplex("Fast Script Reload - Warning",
                 "Auto reload for assets/scripts is enabled." +
                 $"\n\nThis means any change made in playmode will likely trigger full recompile." +
@@ -958,8 +958,8 @@ Tick this box to use custom implementation.", MessageType.Info);
                 $"\r\n\r\nDepending on version you'll find it via: " +
                 $"\r\n1) Edit -> Preferences -> General -> Script Changes While Playing -> Recompile After Finished Playing." +
                 $"\r\n2) Edit -> Preferences -> Asset Pipeline -> Auto Refresh -> Enabled Outside Playmode",
-                "Ok, disable asset auto refresh (I'll refresh manually when needed)",
-                "No, don't change (stop showing this message)",
+                "Ok, disable auto refresh", // Shortened to 24 characters
+                "No, don't change (stop showing)", // Shortened to 31 characters
                 "No, don't change"
             );
 
@@ -1030,7 +1030,7 @@ In the meantime, you can exclude any file from Hot-Reload by
         protected static void AutoDetectAndSetShaderMode()
         {
             var usedShaderMode = FastScriptReloadPreference.ShadersMode.Surface;
-            var renderPipelineAsset = GraphicsSettings.renderPipelineAsset;
+            var renderPipelineAsset = GraphicsSettings.defaultRenderPipeline;
             if (renderPipelineAsset == null)
             {
                 usedShaderMode = FastScriptReloadPreference.ShadersMode.Surface;
