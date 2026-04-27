@@ -880,36 +880,11 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2702749865481257628, guid: 77424da591e5c5646a6a1101e6c1b8c1,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 286320668}
     - targetCorrespondingSourceObject: {fileID: 8790359295936085252, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 77424da591e5c5646a6a1101e6c1b8c1, type: 3}
---- !u!1 &286320667 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2702749865481257628, guid: 77424da591e5c5646a6a1101e6c1b8c1,
-    type: 3}
-  m_PrefabInstance: {fileID: 286320666}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &286320668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 286320667}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 236303536aa463f4ca3cf6efa297f60a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enableLogging: 1
-  loggingInterval: 10
-  staticSignalAlgorithm: {fileID: 0}
 --- !u!1 &352559137
 GameObject:
   m_ObjectHideFlags: 0

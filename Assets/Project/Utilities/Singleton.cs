@@ -7,7 +7,8 @@ namespace Utilities {
         public static T Instance {
             get {
                 if (_instance == null) {
-                    T[] objs = Object.FindObjectsByType<T>(0);
+                    T[] objs = Object.FindObjectsByType<T>(FindObjectsInactive.Exclude);
+                    // T[] objs = Object.FindObjectsByType<T>(0); used before 6000.4.4f1
                     if (objs.Length > 0)
                         _instance = objs[0];
                     if (objs.Length > 1) {

@@ -7,6 +7,7 @@ public class SimulationStatsUI : MonoBehaviour
 {
     [Header("UI References")]
     public TextMeshProUGUI statsText;
+    public TextMeshProUGUI agentInputsText;
 
     [Header("Data Sources")]
     public TrafficLightSetup observedIntersection;
@@ -16,11 +17,14 @@ public class SimulationStatsUI : MonoBehaviour
     public float updateFrequency = 0.1f; // Update every 0.1 seconds
 
     private float lastUpdateTime;
+    private float simulationStartTime;
 
     void Start()
     {
+        simulationStartTime = Time.time;
+
         if (observedIntersection == null)
-            observedIntersection = FindFirstObjectByType<TrafficLightSetup>();
+            observedIntersection = FindAnyObjectByType<TrafficLightSetup>();
 
         if (mlAgent == null && observedIntersection != null)
             mlAgent = observedIntersection.GetComponent<TrafficSignalMlAgent>();
@@ -112,6 +116,28 @@ public class SimulationStatsUI : MonoBehaviour
             // $"<b>Average Queue Length: </b> {observedIntersection.GetVehiclesWaiting()/4:F2}\n" +
             $"<b>Vehicles Cleared: </b> {totalThroughput}\n" +
             $"<b>Throughput: </b> {throughput:F2} v/min";
+        }
+
+        if (agentInputsText != null)
+        {
+            // Calculate time
+            float timeSinceStart = Time.time - simulationStartTime;
+            int minutes = Mathf.FloorToInt(timeSinceStart / 60F);
+            int seconds = Mathf.FloorToInt(timeSinceStart - minutes * 60);
+
+            // Fetch Data
+            int vehiclesWaiting = observedIntersection != null ? observedIntersection.GetVehiclesWaiting() : 0;
+            
+            // NOTE: If you have a method for Wait Time in TrafficLightSetup, call it here.
+            // Example: float totalWaitTime = observedIntersection.GetTotalWaitTime();
+
+            // Update New Panel
+            agentInputsText.text = 
+                $"<b><color=#5A9BD5>--- Agent Observations ---</color></b>\n" +
+                $"<b>Sim Time: </b> {minutes:00}:{seconds:00}\n" +
+                $"<b>Current Phase: </b> {currentPhase}\n" +
+                $"<b>Total Queue: </b> {vehiclesWaiting}";
+                // $"<b>Wait Time: </b> {totalWaitTime:F1}s"; // Uncomment if you add the method
         }
     }
 

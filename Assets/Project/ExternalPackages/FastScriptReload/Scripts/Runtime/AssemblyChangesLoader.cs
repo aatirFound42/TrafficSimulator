@@ -192,7 +192,7 @@ namespace FastScriptReload.Runtime {
                     return;
                 }
 
-                foreach (var instanceOfType in GameObject.FindObjectsOfType(originalType)) //TODO: perf - could find them in different way?
+                foreach (var instanceOfType in GameObject.FindObjectsByType(originalType)) //TODO: perf - could find them in different way?
                 {
                     onScriptHotReloadFn.Invoke(instanceOfType, null);
                 }
