@@ -73,11 +73,19 @@ namespace Simulator.TrafficSignal {
         private void Awake() {
             RoadSetup = GetComponent<RoadSetup>();
             intersectionDataCalculator = GetComponent<IntersectionDataCalculator>();
-            staticSignalAlgorithm = UnityEngine.ScriptableObject.CreateInstance<StaticSignalTimingSO>();
-            dynamicSignalAlgorithm = UnityEngine.ScriptableObject.CreateInstance<DynamicSignalTimingSO>();
-            mlSignalTimingAlgorithm = UnityEngine.ScriptableObject.CreateInstance<MLSignalTimingOptimizationSO>();
-            mlPhaseOrderAlgorithm = UnityEngine.ScriptableObject.CreateInstance<MLPhaseOptimizationSO>();
-
+            // staticSignalAlgorithm = UnityEngine.ScriptableObject.CreateInstance<StaticSignalTimingSO>();
+            // dynamicSignalAlgorithm = UnityEngine.ScriptableObject.CreateInstance<DynamicSignalTimingSO>();
+            // mlSignalTimingAlgorithm = UnityEngine.ScriptableObject.CreateInstance<MLSignalTimingOptimizationSO>();
+            // mlPhaseOrderAlgorithm = UnityEngine.ScriptableObject.CreateInstance<MLPhaseOptimizationSO>();
+            if (staticSignalAlgorithm == null) 
+                staticSignalAlgorithm = UnityEngine.ScriptableObject.CreateInstance<StaticSignalTimingSO>();
+            if (dynamicSignalAlgorithm == null) 
+                dynamicSignalAlgorithm = UnityEngine.ScriptableObject.CreateInstance<DynamicSignalTimingSO>();
+            if (mlSignalTimingAlgorithm == null) 
+                mlSignalTimingAlgorithm = UnityEngine.ScriptableObject.CreateInstance<MLSignalTimingOptimizationSO>();
+            if (mlPhaseOrderAlgorithm == null) 
+                mlPhaseOrderAlgorithm = UnityEngine.ScriptableObject.CreateInstance<MLPhaseOptimizationSO>();
+            
             // — enable only the chosen controller:
             var staticCtrl = GetComponent<StaticSignalController>();
             var mlAgent = GetComponent<TrafficSignalMlAgent>();
@@ -271,6 +279,14 @@ namespace Simulator.TrafficSignal {
 
         public int GetTimePassed() {
             return totalTimeOfSimulation;
+        }
+
+        public int GetTimePassedInCurrentPhase() {
+            return timePassed;
+        }
+
+        public int GetTotalPhases() {
+            return Phases != null ? Phases.Length : 0;
         }
 
     }

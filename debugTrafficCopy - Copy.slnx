@@ -1,0 +1,9 @@
+﻿<Solution>
+  <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="Meryel.CodeAssist.Editor.csproj" />
+  <Project Path="FastScriptReload.Editor.csproj" />
+  <Project Path="FastScriptReload.Runtime.csproj" />
+  <Project Path="ProjectExternal.csproj" />
+  <Project Path="Utilities.Assembly.csproj" />
+  <Project Path="Plugins.Assembly.csproj" />
+</Solution>

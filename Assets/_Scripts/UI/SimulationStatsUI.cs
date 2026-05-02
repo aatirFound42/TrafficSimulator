@@ -126,8 +126,8 @@ public class SimulationStatsUI : MonoBehaviour
             int seconds = Mathf.FloorToInt(timeSinceStart - minutes * 60);
 
             // Fetch Data
-            int vehiclesWaiting = observedIntersection != null ? observedIntersection.GetVehiclesWaiting() : 0;
-            
+            // int vehiclesWaiting = observedIntersection != null ? observedIntersection.GetVehiclesWaiting() : 0;
+            int vehiclesWaiting = 0;
             // NOTE: If you have a method for Wait Time in TrafficLightSetup, call it here.
             // Example: float totalWaitTime = observedIntersection.GetTotalWaitTime();
 

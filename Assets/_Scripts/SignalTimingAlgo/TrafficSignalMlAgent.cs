@@ -57,7 +57,11 @@ namespace Simulator.SignalTiming {
             base.Awake();
             trafficLightSetup = GetComponent<TrafficLightSetup>();
             phases = trafficLightSetup.Phases;
-            Ml_data.observations = new float[Ml_data.OFSET + (Ml_data.NUM_OF_LEGS * Ml_data.NUM_OF_VEHICLES_PER_LEG * Ml_data.NUM_OF_OBSERVATIONS_PER_VEHICLE)];
+            // Ml_data.observations = new float[Ml_data.OFSET + (Ml_data.NUM_OF_LEGS * Ml_data.NUM_OF_VEHICLES_PER_LEG * Ml_data.NUM_OF_OBSERVATIONS_PER_VEHICLE)];
+            int totalPhases = phases.Length;
+            int observationSize = Ml_data.OFSET + (Ml_data.NUM_OF_LEGS * 2) + totalPhases + 1; // 4 Queue + 4 Wait + Phase Count + 1 Elapsed Time
+            Ml_data.observations = new float[observationSize];
+
             Debug.Log("I am PPO Agent");
             // INITIALIZE LOGGERS
             episodeLogger = new CsvLogger("episode_results.csv",
@@ -181,8 +185,8 @@ namespace Simulator.SignalTiming {
             EndEpisode();
 
             //print("Decision requested");
-            Academy.Instance.EnvironmentStep();
             RequestDecision();
+            Academy.Instance.EnvironmentStep();
             //print("Decision complete");
 
             greenLightTime = ChangeToNextPhaseWithTimeInterpolate(action);

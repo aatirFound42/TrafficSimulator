@@ -16,6 +16,9 @@ namespace Simulator.TrafficSignal {
         #region Public Fields
         [field: SerializeField] public int TotalNumberOfVehicles { get; private set; } = 0;
         [field: SerializeField] public int TotalNumberOfVehiclesWaitingInIntersection { get; private set; } = 0;
+        
+        [Header("Debugging")]
+        [SerializeField] private bool logQueueArray = true;
         #endregion
 
 
@@ -27,9 +30,12 @@ namespace Simulator.TrafficSignal {
 
         // Dictionary value: (wait time at interection)
         public readonly List<Dictionary<VehicleDataCalculator, float>> vehiclesWaitingAtLeg = new();
+        public int[] LiveQueueLengths { get; private set; } = new int[4];
+
         private int waitTimeAtIntersection;
 
         private string Name;
+
 
         // public float totalFuelConsumed = 0f;
 
@@ -44,6 +50,7 @@ namespace Simulator.TrafficSignal {
         private void Start() {
             // totalFuelConsumed = 0f;
             StartCoroutine(Tick());
+            StartCoroutine(DebugLogQueueArray());   
         }
         #endregion
 
@@ -92,12 +99,51 @@ namespace Simulator.TrafficSignal {
             }
         }
 
+        public int GetQueueLength(int legIndex) {
+            if (legIndex < 0 || legIndex >= vehiclesWaitingAtLeg.Count) return 0;
+            
+            int queueLength = 0;
+            foreach (var vehicle in vehiclesWaitingAtLeg[legIndex].Keys) {
+                // Only count vehicles currently stopped (speed < threshold)
+                if (vehicle.IsStopped) {
+                    queueLength++;
+                }
+            }
+            return queueLength;
+        }
+
+        public float GetMaxWaitTime(int legIndex) {
+            if (legIndex < 0 || legIndex >= vehiclesWaitingAtLeg.Count) return 0;
+            
+            float maxWait = 0f;
+            foreach (var vehicle in vehiclesWaitingAtLeg[legIndex].Keys) {
+                // Find the vehicle with the longest wait time in this leg
+                if (vehicle.TotalWaitTime > maxWait) {
+                    maxWait = vehicle.TotalWaitTime;
+                }
+            }
+            return maxWait;
+        }
+
         public int GetVehiclesCleared() {
             return vehiclesCleared;
         }
 
         public void SetVehiclesCleared(int value) {
             vehiclesCleared = value;
+        }
+
+        private IEnumerator DebugLogQueueArray() {
+            while (true) {
+                // Wait exactly 1 second
+                yield return new WaitForSeconds(1f);
+
+                if (logQueueArray) {
+                    // string.Join neatly prints the whole array separated by commas
+                    string arrayValues = string.Join(", ", LiveQueueLengths);
+                    Debug.Log($"[{Name}] Live Queues: [{arrayValues}]");
+                }
+            }
         }
 
         // public int GetVehiclesWaiting() {

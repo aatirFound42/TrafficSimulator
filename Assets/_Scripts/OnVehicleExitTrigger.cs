@@ -20,7 +20,16 @@ namespace Simulator {
         private void OnTriggerExit(Collider other) {
             if (!other.CompareTag("Vehicle"))
                 return;
-            intersectionDataCalculator.VehicleExited(other.transform.GetComponent<VehicleDataCalculator>());
+
+            var vehicleData = other.GetComponent<VehicleDataCalculator>();
+    
+            // Clear the vehicle's memory of the intersection
+            vehicleData.ClearIntersectionData();
+            
+            intersectionDataCalculator.VehicleExited(vehicleData);
+            ++count;
+            intersectionDataCalculator.SetVehiclesCleared(count);
+
             // Debug.Log($"[Exit] Vehicle {other.name} at time {Time.time}");
             ++count;
             // Debug.Log($"Exit count: {count}");

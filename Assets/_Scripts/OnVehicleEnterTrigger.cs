@@ -11,7 +11,13 @@ namespace Simulator {
         private void OnTriggerEnter(Collider other) {
             if (!other.CompareTag("Vehicle"))
                 return;
-            intersectionDataCalculator.VehicleEntered(other.transform.GetComponent<VehicleDataCalculator>(), legIndex);
+
+            var vehicleData = other.GetComponent<VehicleDataCalculator>();
+    
+            // Tell the vehicle where it is
+            vehicleData.AssignToIntersection(intersectionDataCalculator, legIndex);
+
+            intersectionDataCalculator.VehicleEntered(vehicleData, legIndex);
             // Debug.Log($"[Enter] Vehicle {other.name} on leg {legIndex} at time {Time.time}");
             // intersectionDataCalculator.IncreaseVehiclesWaiting();
         }

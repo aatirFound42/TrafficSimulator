@@ -1,6 +1,7 @@
 using Simulator.AI;
 using Simulator.ScriptableObject;
 using Simulator.Vehicle;
+using Simulator.TrafficSignal;
 using System.Collections;
 using UnityEngine;
 using Utilities;
@@ -15,10 +16,16 @@ namespace Simulator.RuntimeData {
         //private bool _reachedAnIntersection;
 
         public bool Initialized { get; private set; } = false;
+        public bool IsStopped => vehicleController.Speed < vehicleSettings.considerStopSpeed;
         public int TotalWaitTime { get; private set; }
         public float TotalDistanceTraveled { get; private set; }
         public int TotalTimeTaken { get; private set; }
         public float FuelUsed { get; private set; }
+
+        // State tracking
+        private bool isCurrentlyStopped = false;
+        public int CurrentLegIndex { get; set; } = -1;
+        public IntersectionDataCalculator CurrentIntersection { get; set; }
 
         //public int WaitTimeBeforeReachingIntersesction { get; private set; }
         //public bool ReachedAnIntersection {
@@ -57,9 +64,28 @@ namespace Simulator.RuntimeData {
             while (true) {
                 yield return new WaitForSeconds(1f);
 
-                if (vehicleController.Speed < vehicleSettings.considerStopSpeed) {
+                // 1. Check current physical speed
+                bool speedIsLow = vehicleController.Speed < vehicleSettings.considerStopSpeed;
+
+                // 2. Add to total wait time if slow
+                if (speedIsLow) {
                     TotalWaitTime++;
-                    //WaitTimeBeforeReachingIntersesction++;
+                }
+
+                // --- NEW EVENT-DRIVEN QUEUE LOGIC ---
+                // If the car JUST stopped...
+                if (speedIsLow && !isCurrentlyStopped) {
+                    isCurrentlyStopped = true;
+                    if (CurrentIntersection != null && CurrentLegIndex >= 0) {
+                        CurrentIntersection.LiveQueueLengths[CurrentLegIndex]++;
+                    }
+                }
+                // If the car JUST started moving again...
+                else if (!speedIsLow && isCurrentlyStopped) {
+                    isCurrentlyStopped = false;
+                    if (CurrentIntersection != null && CurrentLegIndex >= 0) {
+                        CurrentIntersection.LiveQueueLengths[CurrentLegIndex]--;
+                    }
                 }
 
                 TotalTimeTaken++;
@@ -107,6 +133,27 @@ namespace Simulator.RuntimeData {
             });
         }
 
+        public void AssignToIntersection(IntersectionDataCalculator intersection, int leg) {
+            CurrentIntersection = intersection;
+            CurrentLegIndex = leg;
+
+            // FIX: If the car was already crawling/stopped BEFORE it hit the trigger,
+            // we must immediately add it to the queue now that it has arrived!
+            if (isCurrentlyStopped && CurrentIntersection != null) {
+                CurrentIntersection.LiveQueueLengths[CurrentLegIndex]++;
+            }
+        }
+
+        public void ClearIntersectionData() {
+            // Safety check: if it somehow exits while flagged as stopped, fix the array
+            if (isCurrentlyStopped && CurrentIntersection != null && CurrentLegIndex >= 0) {
+                CurrentIntersection.LiveQueueLengths[CurrentLegIndex]--;
+            }
+            
+            // isCurrentlyStopped = false;
+            CurrentIntersection = null;
+            CurrentLegIndex = -1;
+        }
 
     }
 }
