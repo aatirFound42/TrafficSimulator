@@ -26,6 +26,10 @@ namespace Simulator.SignalTiming {
         public ML_DATA Ml_data;
         //public event Action OnReset;
 
+        [Header("Logging")]
+        [Tooltip("Turn this OFF during ML-Agents training to drastically improve performance.")]
+        public bool enableLogging = false; 
+
         // CSV Logger
         private CsvLogger episodeLogger;
         private CsvLogger intervalLogger;
@@ -64,25 +68,27 @@ namespace Simulator.SignalTiming {
 
             // Debug.Log("I am PPO Agent");
             // INITIALIZE LOGGERS
-            episodeLogger = new CsvLogger("episode_results.csv",
-                "Episode",
-                "TotalVehicles",
-                "VehiclesWaiting",
-                "EpisodeDuration",
-                "CurrentReward",
-                "CurrentPhase",
-                "GreenLightTime");
+            if (enableLogging) {
+                episodeLogger = new CsvLogger("episode_results.csv",
+                    "Episode",
+                    "TotalVehicles",
+                    "VehiclesWaiting",
+                    "EpisodeDuration",
+                    "CurrentReward",
+                    "CurrentPhase",
+                    "GreenLightTime");
 
-            // Initialize interval logger
-            intervalLogger = new CsvLogger("interval_data.csv",
-                "SimulationTime",
-                "Episode",
-                "Step",
-                "TotalVehicles",
-                "QueueLength",
-                "CurrentReward",
-                "CurrentPhase",
-                "GreenLightTime");
+                // Initialize interval logger
+                intervalLogger = new CsvLogger("interval_data.csv",
+                    "SimulationTime",
+                    "Episode",
+                    "Step",
+                    "TotalVehicles",
+                    "QueueLength",
+                    "CurrentReward",
+                    "CurrentPhase",
+                    "GreenLightTime");
+            }
 
             episodeStartTime = Time.time;
             simulationStartTime = Time.time;  // Track simulation start time
@@ -101,6 +107,7 @@ namespace Simulator.SignalTiming {
 
         // Method to log interval data
         private void LogIntervalData() {
+            if (!enableLogging) return;
             float currentSimulationTime = Time.time - simulationStartTime;
 
             if (currentSimulationTime >= lastLogTime + loggingInterval) {
@@ -163,7 +170,7 @@ namespace Simulator.SignalTiming {
             AddReward(Ml_data.rewards);
 
             // 2. Log Data
-            if (trafficLightSetup != null) {
+            if (enableLogging && episodeLogger != null && trafficLightSetup != null) {
                 var intersectionData = trafficLightSetup.GetComponent<IntersectionDataCalculator>();
                 if (intersectionData != null) {
                     episodeLogger.LogRow(
@@ -217,11 +224,11 @@ namespace Simulator.SignalTiming {
 
         // Save data when application quits or gets destroyed
         private void OnApplicationQuit() {
-            SaveAllData();
+            if (enableLogging) SaveAllData();
         }
 
         private void OnDestroy() {
-            SaveAllData();
+            if (enableLogging) SaveAllData();
         }
 
         private void SaveAllData() {
@@ -232,7 +239,11 @@ namespace Simulator.SignalTiming {
         // ADD THIS: Manual save method you can call from inspector
         [ContextMenu("Save CSV Data")]
         public void ManualSave() {
-            SaveAllData();
+            if (enableLogging) {
+                SaveAllData();
+            } else {
+                Debug.LogWarning("Logging is disabled. Nothing to save.");
+            }
         }
 
         public float GetReward() {

@@ -53,7 +53,8 @@ namespace Simulator.ScriptableObject {
             // ==========================================
             float reward = 0f;
             for (int i = 0; i < ml_data.NUM_OF_LEGS; i++) {
-                float queue = intersectionDataCalculator.LiveQueueLengths[i];
+                // float queue = intersectionDataCalculator.LiveQueueLengths[i];
+                float queue = intersectionDataCalculator.GetQueueLength(i);
                 
                 // Linear penalty for total global delay
                 reward -= (queue * 0.01f); 
@@ -77,8 +78,9 @@ namespace Simulator.ScriptableObject {
 
             // A. Queue Length per Leg (Normalized)
             for (int i = 0; i < ml_data.NUM_OF_LEGS; i++) {
-                float q = intersectionDataCalculator.LiveQueueLengths[i];
-                ml_data.observations[obsIndex++] = Mathf.Clamp01(q / maxQueueCapacity); 
+                // float q = intersectionDataCalculator.LiveQueueLengths[i];
+                float queue = intersectionDataCalculator.GetQueueLength(i);
+                ml_data.observations[obsIndex++] = Mathf.Clamp01(queue / maxQueueCapacity); 
             }
 
             // B. Max Wait Time per Leg (Normalized)

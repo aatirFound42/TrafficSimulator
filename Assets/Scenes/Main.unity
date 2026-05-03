@@ -932,7 +932,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4341587461953201672, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
+      propertyPath: MaxStep
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4341587461953201672, guid: 77424da591e5c5646a6a1101e6c1b8c1,
+        type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4341587461953201672, guid: 77424da591e5c5646a6a1101e6c1b8c1,
+        type: 3}
+      propertyPath: Ml_data.OFSET
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
@@ -1060,16 +1070,21 @@ PrefabInstance:
     - target: {fileID: 7792451276876433468, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: m_BehaviorType
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7792451276876433468, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: m_BrainParameters.VectorObservationSize
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8007035633690914046, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8007035633690914046, guid: 77424da591e5c5646a6a1101e6c1b8c1,
+        type: 3}
+      propertyPath: enableLogging
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8143450308585973240, guid: 77424da591e5c5646a6a1101e6c1b8c1,
