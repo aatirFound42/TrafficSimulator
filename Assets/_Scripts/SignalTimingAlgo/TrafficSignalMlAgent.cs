@@ -159,14 +159,10 @@ namespace Simulator.SignalTiming {
         /// <param name="obseve"></param>
         /// <returns> (phaseindex, greenlight time)</returns>
         public (int, float) GenerateAction() {
-
+            // 1. Apply the reward calculated from the previous phase's results
             AddReward(Ml_data.rewards);
-            //Debug.Log($"Reward given: {Ml_data.rewards}");
-            //Debug.Log(GetCumulativeReward());
 
-            // float fuel = GameManager.Instance.TotalFuelUsed;
-
-            // LOG EPISODE DATA BEFORE ENDING
+            // 2. Log Data
             if (trafficLightSetup != null) {
                 var intersectionData = trafficLightSetup.GetComponent<IntersectionDataCalculator>();
                 if (intersectionData != null) {
@@ -182,14 +178,18 @@ namespace Simulator.SignalTiming {
                 }
             }
 
-            EndEpisode();
+            // EndEpisode(); // End the episode to trigger OnEpisodeBegin and reset the environment for the next action
 
-            //print("Decision requested");
+            // 3. Request a new decision from the neural network
             RequestDecision();
+            
+            // 4. Force the environment to step synchronously. 
+            // This immediately triggers OnActionReceived(), guaranteeing 'action' is fresh.
             Academy.Instance.EnvironmentStep();
-            //print("Decision complete");
 
+            // 5. Calculate the new time using the perfectly fresh action
             greenLightTime = ChangeToNextPhaseWithTimeInterpolate(action);
+            
             return (-1, greenLightTime);
         }
 
