@@ -20,6 +20,7 @@ behaviors:
         gamma: 0.99          # 0.99 means the agent cares heavily about the long-term future
         strength: 1.0
     keep_checkpoints: 5
-    max_steps: 2000000       # 2 million steps gives it plenty of time to master traffic
+    max_steps: 50000        # Lowered from 2,000,000
+    summary_freq: 500       # Lowered from 10,000
     time_horizon: 64
-    summary_freq: 10000      # Updates the terminal every 10,000 steps (perfect speed)
+    # summary_freq: 10000      # Updates the terminal every 10,000 steps (perfect speed)

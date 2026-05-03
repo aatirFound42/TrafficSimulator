@@ -64,19 +64,33 @@ namespace Simulator.TrafficSignal {
             }
         }
 
-        internal void VehicleEntered(VehicleDataCalculator vehicleDataCalculator, int legIndex) {
-            if (vehiclesWaitingAtLeg[legIndex].ContainsKey(vehicleDataCalculator)) {
-                vehiclesWaitingAtLeg[legIndex].Add(vehicleDataCalculator, vehicleDataCalculator.TotalWaitTime);
+        // internal void VehicleEntered(VehicleDataCalculator vehicleDataCalculator, int legIndex) {
+        //     if (vehiclesWaitingAtLeg[legIndex].ContainsKey(vehicleDataCalculator)) {
+        //         vehiclesWaitingAtLeg[legIndex].Add(vehicleDataCalculator, vehicleDataCalculator.TotalWaitTime);
 
+        //     }
+        //     //vehiclesWaitingAtLeg[vehicleDataCalculator] = (legIndex, vehicleDataCalculator.TotalWaitTime);
+        //     vehiclesWaitingAtLeg[legIndex][vehicleDataCalculator] = vehicleDataCalculator.TotalWaitTime;
+        //     TotalNumberOfVehicles++;
+        //     //vehiclesInLeg[legIndex]++;
+        //     TotalNumberOfVehiclesWaitingInIntersection++;
+        //     // Debug.Log($"Vehicle {vehicleDataCalculator.name} entered intersection {Name} at leg {legIndex}");
+        //     // Debug.Log($"Entered: Total={TotalNumberOfVehicles}, Waiting={TotalNumberOfVehiclesWaitingInIntersection}");
+        //     // Debug.Log($"TotalNumberOfVehicles: {TotalNumberOfVehicles}, TotalNumberOfVehiclesWaitingInIntersection: {TotalNumberOfVehiclesWaitingInIntersection}");
+        // }
+
+        internal void VehicleEntered(VehicleDataCalculator vehicleDataCalculator, int legIndex) {
+            // 1. Safety Shield: If the car is already in the dictionary, ignore this duplicate trigger!
+            if (vehiclesWaitingAtLeg[legIndex].ContainsKey(vehicleDataCalculator)) {
+                return; 
             }
-            //vehiclesWaitingAtLeg[vehicleDataCalculator] = (legIndex, vehicleDataCalculator.TotalWaitTime);
+
+            // 2. Safely add or update the vehicle's wait time
             vehiclesWaitingAtLeg[legIndex][vehicleDataCalculator] = vehicleDataCalculator.TotalWaitTime;
+            
+            // 3. Update the global counts
             TotalNumberOfVehicles++;
-            //vehiclesInLeg[legIndex]++;
             TotalNumberOfVehiclesWaitingInIntersection++;
-            // Debug.Log($"Vehicle {vehicleDataCalculator.name} entered intersection {Name} at leg {legIndex}");
-            // Debug.Log($"Entered: Total={TotalNumberOfVehicles}, Waiting={TotalNumberOfVehiclesWaitingInIntersection}");
-            // Debug.Log($"TotalNumberOfVehicles: {TotalNumberOfVehicles}, TotalNumberOfVehiclesWaitingInIntersection: {TotalNumberOfVehiclesWaitingInIntersection}");
         }
 
         internal void VehicleExited(VehicleDataCalculator vehicleDataCalculator) {
