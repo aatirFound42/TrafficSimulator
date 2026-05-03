@@ -62,7 +62,7 @@ namespace Simulator.SignalTiming {
             int observationSize = Ml_data.OFSET + (Ml_data.NUM_OF_LEGS * 2) + totalPhases + 1; // 4 Queue + 4 Wait + Phase Count + 1 Elapsed Time
             Ml_data.observations = new float[observationSize];
 
-            Debug.Log("I am PPO Agent");
+            // Debug.Log("I am PPO Agent");
             // INITIALIZE LOGGERS
             episodeLogger = new CsvLogger("episode_results.csv",
                 "Episode",

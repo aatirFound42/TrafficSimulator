@@ -90,7 +90,7 @@ namespace Simulator.TrafficSignal {
                     vehiclesCleared++;
                     // Debug.Log($"Vehicle {vehicleDataCalculator.name} exited intersection {Name} from leg {i}. Wait time at intersection: {waitTimeAtIntersection} seconds");
                     // Debug.Log($"Vehicles Cleared: {vehiclesCleared}, TotalNumberOfVehiclesWaitingInIntersection: {TotalNumberOfVehiclesWaitingInIntersection}");
-                    Debug.Log($"Exited: Waiting={TotalNumberOfVehiclesWaitingInIntersection}");
+                    // Debug.Log($"Exited: Waiting={TotalNumberOfVehiclesWaitingInIntersection}");
                     // totalFuelConsumed += vehicleDataCalculator.FuelUsed;
                     GameManager.Instance.TotalFuelUsed += vehicleDataCalculator.FuelUsed;
                     break;
@@ -141,7 +141,7 @@ namespace Simulator.TrafficSignal {
                 if (logQueueArray) {
                     // string.Join neatly prints the whole array separated by commas
                     string arrayValues = string.Join(", ", LiveQueueLengths);
-                    Debug.Log($"[{Name}] Live Queues: [{arrayValues}]");
+                    // Debug.Log($"[{Name}] Live Queues: [{arrayValues}]");
                 }
             }
         }

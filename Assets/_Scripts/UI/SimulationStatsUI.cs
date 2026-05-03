@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using Simulator.SignalTiming;
 using Simulator.TrafficSignal;
+using System.Linq; // Added for easy array formatting
 
 public class SimulationStatsUI : MonoBehaviour
 {
@@ -60,10 +61,6 @@ public class SimulationStatsUI : MonoBehaviour
             : -1f;
 
         // 5. Total Throughput
-        // var dataCalc = observedIntersection.GetComponent<IntersectionDataCalculator>();
-        // int totalThroughput = mlAgent != null
-        //     ? mlAgent.GetTotalVehicles()
-        //     : 0;
         int totalThroughput = observedIntersection != null
             ? observedIntersection.GetVehiclesCleared()
             : 0;
@@ -80,8 +77,6 @@ public class SimulationStatsUI : MonoBehaviour
             $"<b>Algorithm: </b> Fixed-time plan\n" +
             $"<b>Phase: </b> {currentPhase}\n" +
             $"<b>Timing: </b> {phaseTiming:F1}s\n" +
-            // $"<b>Vehicles Waiting: </b> {observedIntersection.GetVehiclesWaiting()}\n" +
-            // $"<b>Average Queue Length: </b> {observedIntersection.GetVehiclesWaiting()/4:F2}\n" +
             $"<b>Vehicles Cleared: </b> {totalThroughput}\n" +
             $"<b>Throughput: </b> {throughput:F2} v/min";
         }
@@ -91,8 +86,6 @@ public class SimulationStatsUI : MonoBehaviour
             $"<b>Phase: </b> {currentPhase}\n" +
             $"<b>Timing: </b> {phaseTiming:F1}s\n" +
             $"<b>Reward: </b> {reward:F2}\n" +
-            // $"<b>Vehicles Waiting: </b> {observedIntersection.GetVehiclesWaiting()}\n" +
-            // $"<b>Average Queue Length: </b> {observedIntersection.GetVehiclesWaiting()/4:F2}\n" +
             $"<b>Vehicles Cleared: </b> {totalThroughput}\n" +
             $"<b>Throughput: </b> {throughput:F2} v/min";
         }
@@ -101,8 +94,6 @@ public class SimulationStatsUI : MonoBehaviour
             $"<b>Algorithm: </b> Dynamic time plan\n" +
             $"<b>Phase: </b> {currentPhase}\n" +
             $"<b>Timing: </b> {phaseTiming:F1}s\n" +
-            // $"<b>Vehicles Waiting: </b> {observedIntersection.GetVehiclesWaiting()}\n" +
-            // $"<b>Average Queue Length: </b> {observedIntersection.GetVehiclesWaiting()/4:F2}\n" +
             $"<b>Vehicles Cleared: </b> {totalThroughput}\n" +
             $"<b>Throughput: </b> {throughput:F2} v/min";
         }
@@ -112,12 +103,11 @@ public class SimulationStatsUI : MonoBehaviour
             $"<b>Phase: </b> {currentPhase}\n" +
             $"<b>Timing: </b> {phaseTiming:F1}s\n" +
             $"<b>Reward: </b> {reward:F2}\n" +
-            // $"<b>Vehicles Waiting: </b> {observedIntersection.GetVehiclesWaiting()}\n" +
-            // $"<b>Average Queue Length: </b> {observedIntersection.GetVehiclesWaiting()/4:F2}\n" +
             $"<b>Vehicles Cleared: </b> {totalThroughput}\n" +
             $"<b>Throughput: </b> {throughput:F2} v/min";
         }
 
+        // --- NEW AGENT OBSERVATIONS PANEL ---
         if (agentInputsText != null)
         {
             // Calculate time
@@ -125,19 +115,39 @@ public class SimulationStatsUI : MonoBehaviour
             int minutes = Mathf.FloorToInt(timeSinceStart / 60F);
             int seconds = Mathf.FloorToInt(timeSinceStart - minutes * 60);
 
-            // Fetch Data
-            // int vehiclesWaiting = observedIntersection != null ? observedIntersection.GetVehiclesWaiting() : 0;
-            int vehiclesWaiting = 0;
-            // NOTE: If you have a method for Wait Time in TrafficLightSetup, call it here.
-            // Example: float totalWaitTime = observedIntersection.GetTotalWaitTime();
+            // Fetch intersection data for human-readable stats
+            var dataCalc = observedIntersection.GetComponent<IntersectionDataCalculator>();
+            int totalVehiclesWaiting = 0;
+            string queuesStr = "N/A";
+            string waitTimesStr = "N/A";
+
+            if (dataCalc != null) {
+                // Sum all queues safely
+                totalVehiclesWaiting = dataCalc.LiveQueueLengths[0] + dataCalc.LiveQueueLengths[1] + 
+                                       dataCalc.LiveQueueLengths[2] + dataCalc.LiveQueueLengths[3];
+                
+                queuesStr = $"[{dataCalc.LiveQueueLengths[0]}, {dataCalc.LiveQueueLengths[1]}, {dataCalc.LiveQueueLengths[2]}, {dataCalc.LiveQueueLengths[3]}]";
+                waitTimesStr = $"[{dataCalc.GetMaxWaitTime(0):F0}s, {dataCalc.GetMaxWaitTime(1):F0}s, {dataCalc.GetMaxWaitTime(2):F0}s, {dataCalc.GetMaxWaitTime(3):F0}s]";
+            }
+
+            // Fetch the raw ML-Agent normalized array
+            string obsArrayStr = "Waiting for agent initialization...";
+            if (mlAgent != null && mlAgent.Ml_data != null && mlAgent.Ml_data.observations != null && mlAgent.Ml_data.observations.Length > 0) {
+                // Convert the float array to a string with 2 decimal places to keep it tidy
+                var formattedObs = System.Array.ConvertAll(mlAgent.Ml_data.observations, x => x.ToString("F2"));
+                obsArrayStr = string.Join(", ", formattedObs);
+            }
 
             // Update New Panel
             agentInputsText.text = 
-                $"<b><color=#5A9BD5>--- Agent Observations ---</color></b>\n" +
+                $"<b><color=#5A9BD5>Human Readable State</color></b>\n" +
                 $"<b>Sim Time: </b> {minutes:00}:{seconds:00}\n" +
                 $"<b>Current Phase: </b> {currentPhase}\n" +
-                $"<b>Total Queue: </b> {vehiclesWaiting}";
-                // $"<b>Wait Time: </b> {totalWaitTime:F1}s"; // Uncomment if you add the method
+                $"<b>Total Queue: </b> {totalVehiclesWaiting}\n" +
+                $"<b>Leg Queues: </b> {queuesStr}\n" +
+                $"<b>Max Waits: </b> {waitTimesStr}\n\n" +
+                $"<b><color=#5A9BD5>ML Normalized Array</color></b>\n" +
+                $"<size=85%>[{obsArrayStr}]</size>";
         }
     }
 
