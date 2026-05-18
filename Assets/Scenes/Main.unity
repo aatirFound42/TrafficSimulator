@@ -962,6 +962,16 @@ PrefabInstance:
       propertyPath: signalTimingAlgorithmType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
+        type: 3}
+      propertyPath: <Phases>k__BackingField.Array.data[0].greenLightTime
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
+        type: 3}
+      propertyPath: <Phases>k__BackingField.Array.data[1].greenLightTime
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 5156661207315012118, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: m_Size.x

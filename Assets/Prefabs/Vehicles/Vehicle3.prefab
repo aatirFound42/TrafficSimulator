@@ -60,7 +60,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.656, z: 2.39}
-  m_LocalScale: {x: 0.97, y: 0.45, z: 0.14}
+  m_LocalScale: {x: 1.4, y: 0.45, z: 0.14}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8330264961093584948}
@@ -92,6 +92,9 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -113,9 +116,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &4581829305365063762
 GameObject:
@@ -210,6 +215,9 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -231,9 +239,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &6834951405783043257
 GameObject:
@@ -293,7 +303,13 @@ MonoBehaviour:
   frontRay: {fileID: 6740025017230794470}
   sideRay: {fileID: 8174518779806101957}
   <GraphGenerator>k__BackingField: {fileID: 0}
+  pointsToFollowLength: 0
+  currentFollowingPointIndex: 0
+  shortestPathNodesLength: 0
   showDebugLines: 0
+  debugRoadSetup: {fileID: 0}
+  debugCurrentNodeIndex: 0
+  debugCurrentFollowingPointIndex: 0
 --- !u!114 &3937444468051832230
 MonoBehaviour:
   m_ObjectHideFlags: 0

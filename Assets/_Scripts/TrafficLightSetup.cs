@@ -58,7 +58,9 @@ namespace Simulator.TrafficSignal {
         [SerializeField] private MLPhaseOptimizationSO mlPhaseOrderAlgorithm;
 
 
-
+        [Header("Intersection Timing")]
+        [SerializeField] private float clearanceTime = 2f; 
+        private bool isClearancePhase = false;
 
 
         private float greenLightTime;
@@ -185,13 +187,14 @@ namespace Simulator.TrafficSignal {
             while (true) {
                 switch (signalTimingAlgorithmType) {
                     case TrafficSignalAlogrithm.Static:
-                        if (staticSignalAlgorithm != null) {
-                            (tempNextPhaseIndex, tempNextPhaseGreenLightTime) = staticSignalAlgorithm.GetNextPhase(intersectionDataCalculator, CurrentPhaseIndex);
-                        }
-                        else {
-                            // Fallback: use default phase timings
-                            (tempNextPhaseIndex, tempNextPhaseGreenLightTime) = (-1, -1);
-                        }
+                        (tempNextPhaseIndex, tempNextPhaseGreenLightTime) = (-1, -1f);
+                        // if (staticSignalAlgorithm != null) {
+                            // (tempNextPhaseIndex, tempNextPhaseGreenLightTime) = (-1, -1f);
+                        // }
+                        // else {
+                        //     // Fallback: use default phase timings
+                        //     (tempNextPhaseIndex, tempNextPhaseGreenLightTime) = (-1, -1);
+                        // }
                         break;
                     case TrafficSignalAlogrithm.Dynamic:
                         (tempNextPhaseIndex, tempNextPhaseGreenLightTime) = (-1, -1);
@@ -210,9 +213,15 @@ namespace Simulator.TrafficSignal {
                         break;
                 }
 
+                // --- 1. CLEARANCE PHASE (ALL RED) ---
+                isClearancePhase = true;
+                TurnAllLightsRed();
+                yield return new WaitForSeconds(clearanceTime);
+
+                // --- 2. GREEN PHASE ---
+                isClearancePhase = false;
                 ChangePhaseTo(tempNextPhaseIndex, tempNextPhaseGreenLightTime);
                 yield return new WaitForSeconds(greenLightTime);
-
             }
         }
 
@@ -243,6 +252,12 @@ namespace Simulator.TrafficSignal {
             OnPhaseChange.Invoke();
         }
 
+        private void TurnAllLightsRed() {
+            foreach (var lr in lineRenderers) {
+                lr.material = trafficSignalSettings.redMaterial;
+            }
+        }
+
         private void RenderPhaseSignalLine() {
             foreach (var splineIndex in Phases[PreviousPhaseIndex].splineIndex) {
                 lineRenderers[splineIndex].material = trafficSignalSettings.redMaterial;
@@ -260,6 +275,8 @@ namespace Simulator.TrafficSignal {
 
 
         public float GetPhaseFromSplineIndex(int splineIndex) {
+            if (isClearancePhase) return -1f;  // Force Red Light during clearance phase
+
             foreach (var sp in Phases[CurrentPhaseIndex].splineIndex) {
                 if (sp == splineIndex) return Phases[CurrentPhaseIndex].greenLightTime - timePassed;
             }
