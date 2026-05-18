@@ -71,3 +71,18 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 /[Aa]ssets/[Ss]treamingAssets/Runtime_Data
 
+# =========================
+# Custom IDE & Cache Additions
+# =========================
+
+# Local Language Server / CodeAssist Caches
+*.lscache
+*.csproj.lscache
+
+# Modern Visual Studio Solutions
+*.slnx
+
+# VS Code & Visual Studio Workspace Settings
+.vscode/
+.vsconfig
+.editorconfig
