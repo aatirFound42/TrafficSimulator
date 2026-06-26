@@ -159,6 +159,35 @@ namespace Simulator.TrafficSignal {
                 }
             }
         }
+        
+        public float GetAverageWaitTime() {
+            float totalWait = 0f;
+            int count = 0;
+            for (int i = 0; i < numberOfLegs; i++) {
+                foreach (var waitTime in vehiclesWaitingAtLeg[i].Values) {
+                    totalWait += waitTime;
+                    count++;
+                }
+            }
+            return count > 0 ? totalWait / count : 0f;
+        }
+
+        public float GetWaitTimeVariance() {
+            float avgWait = GetAverageWaitTime();
+            if (avgWait == 0f) return 0f;
+
+            int count = 0;
+            float sumOfSquaredDifferences = 0f;
+            for (int i = 0; i < numberOfLegs; i++) {
+                foreach (var waitTime in vehiclesWaitingAtLeg[i].Values) {
+                    float diff = waitTime - avgWait;
+                    sumOfSquaredDifferences += (diff * diff);
+                    count++;
+                }
+            }
+            // Using sample variance formula (N-1)
+            return count > 1 ? sumOfSquaredDifferences / (count - 1) : 0f; 
+        }
 
         // public int GetVehiclesWaiting() {
         //     return vehiclesWaiting;

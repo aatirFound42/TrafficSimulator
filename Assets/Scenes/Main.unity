@@ -933,7 +933,7 @@ PrefabInstance:
     - target: {fileID: 4341587461953201672, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: MaxStep
-      value: 500
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 4341587461953201672, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -944,6 +944,16 @@ PrefabInstance:
         type: 3}
       propertyPath: Ml_data.OFSET
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4341587461953201672, guid: 77424da591e5c5646a6a1101e6c1b8c1,
+        type: 3}
+      propertyPath: enableLogging
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
+        type: 3}
+      propertyPath: clearanceTime
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -965,12 +975,17 @@ PrefabInstance:
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: <Phases>k__BackingField.Array.data[0].greenLightTime
-      value: 30
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: <Phases>k__BackingField.Array.data[1].greenLightTime
-      value: 30
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
+        type: 3}
+      propertyPath: <Phases>k__BackingField.Array.data[2].greenLightTime
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5156661207315012118, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -1076,7 +1091,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5022602860645237092, guid: ac00ea17641f133428d94099c726469b,
+        type: 3}
     - target: {fileID: 7792451276876433468, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: m_BehaviorType

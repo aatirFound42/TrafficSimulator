@@ -50,7 +50,9 @@ public class StaticSignalController : MonoBehaviour {
             "EpisodeDuration",
             "Throughput",
             "CurrentPhase",
-            "PhaseGreenTime");
+            "PhaseGreenTime",
+            "AvgWaitTime",
+            "WaitTimeVariance");
             
         // Initialize interval logger
         intervalLogger = new CsvLogger("static_interval_data.csv",
@@ -60,7 +62,9 @@ public class StaticSignalController : MonoBehaviour {
             "QueueLength",
             "Throughput",
             "CurrentPhase",
-            "PhaseGreenTime");
+            "PhaseGreenTime",
+            "AvgWaitTime",
+            "WaitTimeVariance");
             // "VehiclesDeparted",
             // "TrafficDensity");
     }
@@ -110,7 +114,9 @@ public class StaticSignalController : MonoBehaviour {
             intersectionDataCalculator.TotalNumberOfVehiclesWaitingInIntersection,
             throughput,
             trafficLightSetup.CurrentPhaseIndex,
-            trafficLightSetup.Phases[trafficLightSetup.CurrentPhaseIndex].greenLightTime
+            trafficLightSetup.Phases[trafficLightSetup.CurrentPhaseIndex].greenLightTime,
+            intersectionDataCalculator.GetAverageWaitTime(),   // <-- NEW
+            intersectionDataCalculator.GetWaitTimeVariance()
             // vehiclesDeparted,
             // trafficDensity
         );
@@ -130,7 +136,9 @@ public class StaticSignalController : MonoBehaviour {
             Time.time - episodeStartTime,
             throughput,
             trafficLightSetup.CurrentPhaseIndex,
-            trafficLightSetup.Phases[trafficLightSetup.CurrentPhaseIndex].greenLightTime
+            trafficLightSetup.Phases[trafficLightSetup.CurrentPhaseIndex].greenLightTime,
+            intersectionDataCalculator.GetAverageWaitTime(),   // <-- NEW
+            intersectionDataCalculator.GetWaitTimeVariance()
         );
         
         episodeCounter += 1;

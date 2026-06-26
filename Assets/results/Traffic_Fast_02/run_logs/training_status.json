@@ -1,0 +1,56 @@
+{
+    "FourWaySignal": {
+        "checkpoints": [
+            {
+                "steps": 24460,
+                "file_path": "results\\Traffic_Fast_02\\FourWaySignal\\FourWaySignal-24460.onnx",
+                "reward": null,
+                "creation_time": 1778894024.1768148,
+                "auxillary_file_paths": [
+                    "results\\Traffic_Fast_02\\FourWaySignal\\FourWaySignal-24460.pt"
+                ]
+            },
+            {
+                "steps": 31356,
+                "file_path": "results\\Traffic_Fast_02\\FourWaySignal\\FourWaySignal-31356.onnx",
+                "reward": -100.91600131988525,
+                "creation_time": 1778910520.3990736,
+                "auxillary_file_paths": [
+                    "results\\Traffic_Fast_02\\FourWaySignal\\FourWaySignal-31356.pt"
+                ]
+            },
+            {
+                "steps": 39264,
+                "file_path": "results\\Traffic_Fast_02\\FourWaySignal\\FourWaySignal-39264.onnx",
+                "reward": null,
+                "creation_time": 1778944154.2388816,
+                "auxillary_file_paths": [
+                    "results\\Traffic_Fast_02\\FourWaySignal\\FourWaySignal-39264.pt"
+                ]
+            },
+            {
+                "steps": 44712,
+                "file_path": "results\\Traffic_Fast_02\\FourWaySignal\\FourWaySignal-44712.onnx",
+                "reward": -13345.044005393982,
+                "creation_time": 1779377791.4115689,
+                "auxillary_file_paths": [
+                    "results\\Traffic_Fast_02\\FourWaySignal\\FourWaySignal-44712.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 44712,
+            "file_path": "results\\Traffic_Fast_02\\FourWaySignal.onnx",
+            "reward": -13345.044005393982,
+            "creation_time": 1779377791.4115689,
+            "auxillary_file_paths": [
+                "results\\Traffic_Fast_02\\FourWaySignal\\FourWaySignal-44712.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.12.0+cpu"
+    }
+}

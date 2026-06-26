@@ -69,14 +69,16 @@ namespace Simulator.SignalTiming {
             // Debug.Log("I am PPO Agent");
             // INITIALIZE LOGGERS
             if (enableLogging) {
-                episodeLogger = new CsvLogger("episode_results.csv",
+                episodeLogger = new CsvLogger("ml_episode_results.csv",
                     "Episode",
                     "TotalVehicles",
                     "VehiclesWaiting",
                     "EpisodeDuration",
                     "CurrentReward",
                     "CurrentPhase",
-                    "GreenLightTime");
+                    "GreenLightTime",
+                    "AvgWaitTime",
+                    "WaitTimeVariance");
 
                 // Initialize interval logger
                 intervalLogger = new CsvLogger("interval_data.csv",
@@ -87,7 +89,9 @@ namespace Simulator.SignalTiming {
                     "QueueLength",
                     "CurrentReward",
                     "CurrentPhase",
-                    "GreenLightTime");
+                    "GreenLightTime",
+                    "AvgWaitTime",
+                    "WaitTimeVariance");
             }
 
             episodeStartTime = Time.time;
@@ -124,7 +128,9 @@ namespace Simulator.SignalTiming {
                         // GetCumulativeReward(),
                         Ml_data.rewards,
                         trafficLightSetup.CurrentPhaseIndex,
-                        greenLightTime
+                        greenLightTime,
+                        intersectionData.GetAverageWaitTime(),
+                        intersectionData.GetWaitTimeVariance()
                     );
                 }
 
@@ -180,7 +186,9 @@ namespace Simulator.SignalTiming {
                         Time.time - episodeStartTime,
                         Ml_data.rewards,
                         trafficLightSetup.CurrentPhaseIndex,
-                        greenLightTime
+                        greenLightTime,
+                        intersectionData.GetAverageWaitTime(),
+                        intersectionData.GetWaitTimeVariance()
                     );
                 }
             }

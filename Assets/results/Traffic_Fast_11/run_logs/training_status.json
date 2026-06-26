@@ -1,0 +1,65 @@
+{
+    "FourWaySignal": {
+        "checkpoints": [
+            {
+                "steps": 117983,
+                "file_path": "results\\Traffic_Fast_07\\FourWaySignal\\FourWaySignal-117983.onnx",
+                "reward": null,
+                "creation_time": 1779564531.4351616,
+                "auxillary_file_paths": [
+                    "results\\Traffic_Fast_07\\FourWaySignal\\FourWaySignal-117983.pt"
+                ]
+            },
+            {
+                "steps": 147263,
+                "file_path": "results\\Traffic_Fast_08\\FourWaySignal\\FourWaySignal-147263.onnx",
+                "reward": null,
+                "creation_time": 1779598498.0248861,
+                "auxillary_file_paths": [
+                    "results\\Traffic_Fast_08\\FourWaySignal\\FourWaySignal-147263.pt"
+                ]
+            },
+            {
+                "steps": 164351,
+                "file_path": "results\\Traffic_Fast_09\\FourWaySignal\\FourWaySignal-164351.onnx",
+                "reward": null,
+                "creation_time": 1779611622.034388,
+                "auxillary_file_paths": [
+                    "results\\Traffic_Fast_09\\FourWaySignal\\FourWaySignal-164351.pt"
+                ]
+            },
+            {
+                "steps": 187555,
+                "file_path": "results\\Traffic_Fast_10\\FourWaySignal\\FourWaySignal-187555.onnx",
+                "reward": -22490.22060251236,
+                "creation_time": 1779647053.3383706,
+                "auxillary_file_paths": [
+                    "results\\Traffic_Fast_10\\FourWaySignal\\FourWaySignal-187555.pt"
+                ]
+            },
+            {
+                "steps": 203695,
+                "file_path": "results\\Traffic_Fast_11\\FourWaySignal\\FourWaySignal-203695.onnx",
+                "reward": -80.63000011444092,
+                "creation_time": 1779729764.178724,
+                "auxillary_file_paths": [
+                    "results\\Traffic_Fast_11\\FourWaySignal\\FourWaySignal-203695.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 203695,
+            "file_path": "results\\Traffic_Fast_11\\FourWaySignal.onnx",
+            "reward": -80.63000011444092,
+            "creation_time": 1779729764.178724,
+            "auxillary_file_paths": [
+                "results\\Traffic_Fast_11\\FourWaySignal\\FourWaySignal-203695.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.12.0+cpu"
+    }
+}
