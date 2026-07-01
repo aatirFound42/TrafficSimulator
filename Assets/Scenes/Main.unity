@@ -982,7 +982,12 @@ PrefabInstance:
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: signalTimingAlgorithmType
-      value: 2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
+        type: 3}
+      propertyPath: <Phases>k__BackingField.Array.size
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -998,6 +1003,81 @@ PrefabInstance:
         type: 3}
       propertyPath: <Phases>k__BackingField.Array.data[2].greenLightTime
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
+        type: 3}
+      propertyPath: <Phases>k__BackingField.Array.data[3].greenLightTime
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
+        type: 3}
+      propertyPath: <Phases>k__BackingField.Array.data[0].splineIndex.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
+        type: 3}
+      propertyPath: <Phases>k__BackingField.Array.data[1].splineIndex.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
+        type: 3}
+      propertyPath: <Phases>k__BackingField.Array.data[2].splineIndex.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
+        type: 3}
+      propertyPath: <Phases>k__BackingField.Array.data[3].splineIndex.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
+        type: 3}
+      propertyPath: '<Phases>k__BackingField.Array.data[1].splineIndex.Array.data[0]'
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
+        type: 3}
+      propertyPath: '<Phases>k__BackingField.Array.data[1].splineIndex.Array.data[1]'
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
+        type: 3}
+      propertyPath: '<Phases>k__BackingField.Array.data[1].splineIndex.Array.data[2]'
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
+        type: 3}
+      propertyPath: '<Phases>k__BackingField.Array.data[2].splineIndex.Array.data[0]'
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
+        type: 3}
+      propertyPath: '<Phases>k__BackingField.Array.data[2].splineIndex.Array.data[1]'
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
+        type: 3}
+      propertyPath: '<Phases>k__BackingField.Array.data[2].splineIndex.Array.data[2]'
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
+        type: 3}
+      propertyPath: '<Phases>k__BackingField.Array.data[3].splineIndex.Array.data[0]'
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
+        type: 3}
+      propertyPath: '<Phases>k__BackingField.Array.data[3].splineIndex.Array.data[1]'
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
+        type: 3}
+      propertyPath: '<Phases>k__BackingField.Array.data[3].splineIndex.Array.data[2]'
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416987583964353620, guid: 77424da591e5c5646a6a1101e6c1b8c1,
+        type: 3}
+      propertyPath: '<Phases>k__BackingField.Array.data[3].splineIndex.Array.data[3]'
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5156661207315012118, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
@@ -1113,7 +1193,7 @@ PrefabInstance:
     - target: {fileID: 7792451276876433468, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
       propertyPath: m_BrainParameters.VectorObservationSize
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 8007035633690914046, guid: 77424da591e5c5646a6a1101e6c1b8c1,
         type: 3}
