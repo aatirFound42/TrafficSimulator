@@ -1,0 +1,29 @@
+{
+    "FourWaySignal": {
+        "checkpoints": [
+            {
+                "steps": 88974,
+                "file_path": "results\\Train_01\\FourWaySignal\\FourWaySignal-88974.onnx",
+                "reward": null,
+                "creation_time": 1782660355.8217778,
+                "auxillary_file_paths": [
+                    "results\\Train_01\\FourWaySignal\\FourWaySignal-88974.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 88974,
+            "file_path": "results\\Train_01\\FourWaySignal.onnx",
+            "reward": null,
+            "creation_time": 1782660355.8217778,
+            "auxillary_file_paths": [
+                "results\\Train_01\\FourWaySignal\\FourWaySignal-88974.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.12.0+cpu"
+    }
+}

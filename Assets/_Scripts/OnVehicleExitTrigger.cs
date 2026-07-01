@@ -1,3 +1,5 @@
+// Assets\_Scripts\OnVehicleExitTrigger.cs
+
 using Simulator.RuntimeData;
 using Simulator.TrafficSignal;
 using UnityEngine;
@@ -5,12 +7,8 @@ using UnityEngine;
 namespace Simulator {
     [RequireComponent(typeof(BoxCollider), typeof(Rigidbody))]
     public class OnVehicleExitTrigger : MonoBehaviour {
-        #region Public Fields
 
-        #endregion
-
-        private int count = 0;
-
+        // private int count = 0;
 
         private IntersectionDataCalculator intersectionDataCalculator;
         #region Unity Methods
@@ -27,14 +25,14 @@ namespace Simulator {
             vehicleData.ClearIntersectionData();
             
             intersectionDataCalculator.VehicleExited(vehicleData);
-            ++count;
-            intersectionDataCalculator.SetVehiclesCleared(count);
 
             // Debug.Log($"[Exit] Vehicle {other.name} at time {Time.time}");
-            ++count;
+            // ++count;
             // Debug.Log($"Exit count: {count}");
-            intersectionDataCalculator.SetVehiclesCleared(count);
+            // intersectionDataCalculator.SetVehiclesCleared(count);
             // intersectionDataCalculator.DecreaseVehiclesWaiting();
+
+            intersectionDataCalculator.VehicleExited(vehicleData);
         }
 
         #endregion

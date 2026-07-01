@@ -1,3 +1,5 @@
+// Assets\_Scripts\SignalTimingAlgo\StaticSignalController.cs
+
 using UnityEngine;
 using Simulator.TrafficSignal;
 using Simulator.ScriptableObject;
@@ -11,6 +13,9 @@ public class StaticSignalController : MonoBehaviour {
     [Header("Interval Logging Configuration")]
     [SerializeField] private float loggingInterval = 10f;  // Adjustable interval in seconds
     
+    [Header("Static Episode Configuration")]
+    [SerializeField] private float episodeDuration = 300f;
+
     [Header("Static Timing Configuration")]
     public StaticSignalTimingSO staticSignalAlgorithm;
     
@@ -95,7 +100,7 @@ public class StaticSignalController : MonoBehaviour {
             }
             
             // Log episode data every 30 seconds (simulate episodes)
-            if (stepCounter % 30 == 0) {
+            if (stepCounter % episodeDuration == 0) {
                 LogEpisodeData();
             }
         }
@@ -111,12 +116,12 @@ public class StaticSignalController : MonoBehaviour {
             currentSimulationTime,
             episodeCounter,
             intersectionDataCalculator.TotalNumberOfVehicles,
-            intersectionDataCalculator.TotalNumberOfVehiclesWaitingInIntersection,
+            intersectionDataCalculator.GetTotalLiveQueueLength(),
             throughput,
             trafficLightSetup.CurrentPhaseIndex,
             trafficLightSetup.Phases[trafficLightSetup.CurrentPhaseIndex].greenLightTime,
-            intersectionDataCalculator.GetAverageWaitTime(),   // <-- NEW
-            intersectionDataCalculator.GetWaitTimeVariance()
+            intersectionDataCalculator.GetCumulativeAverageWaitTime(),   // <-- NEW
+            intersectionDataCalculator.GetCumulativeWaitTimeVariance()
             // vehiclesDeparted,
             // trafficDensity
         );
@@ -132,18 +137,20 @@ public class StaticSignalController : MonoBehaviour {
         episodeLogger?.LogRow(
             episodeCounter,
             intersectionDataCalculator.TotalNumberOfVehicles,
-            intersectionDataCalculator.TotalNumberOfVehiclesWaitingInIntersection,
+            intersectionDataCalculator.GetTotalLiveQueueLength(),
             Time.time - episodeStartTime,
             throughput,
             trafficLightSetup.CurrentPhaseIndex,
             trafficLightSetup.Phases[trafficLightSetup.CurrentPhaseIndex].greenLightTime,
-            intersectionDataCalculator.GetAverageWaitTime(),   // <-- NEW
-            intersectionDataCalculator.GetWaitTimeVariance()
+            intersectionDataCalculator.GetCumulativeAverageWaitTime(),   // <-- NEW
+            intersectionDataCalculator.GetCumulativeWaitTimeVariance()
         );
         
         episodeCounter += 1;
         episodeStartTime = Time.time; // optional: reset episode clock
         // intersectionDataCalculator.totalFuelConsumed = 0f;
+
+        intersectionDataCalculator.ResetEpisodeMetrics();
     }
 
     // float CalculateAverageWaitTime() {
@@ -168,7 +175,7 @@ public class StaticSignalController : MonoBehaviour {
     // Calculate current throughput
     float CalculateThroughput() {
         float elapsedTime = Time.time - episodeStartTime;
-        return elapsedTime > 0 ? intersectionDataCalculator.TotalNumberOfVehicles / elapsedTime : 0f;
+        return elapsedTime > 0 ? intersectionDataCalculator.GetVehiclesCleared() / elapsedTime : 0f;
     }
     
     // Public method to change logging interval at runtime

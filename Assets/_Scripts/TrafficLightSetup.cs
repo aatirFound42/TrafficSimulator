@@ -1,3 +1,5 @@
+// Assets\_Scripts\TrafficLightSetup.cs
+
 using Simulator.Manager;
 using Simulator.Road;
 using Simulator.ScriptableObject;
@@ -60,6 +62,7 @@ namespace Simulator.TrafficSignal {
 
         [Header("Intersection Timing")]
         [SerializeField] private float clearanceTime = 2f; 
+        public float ClearanceTime => clearanceTime;
         private bool isClearancePhase = false;
 
 

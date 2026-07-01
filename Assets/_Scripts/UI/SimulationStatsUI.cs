@@ -1,3 +1,5 @@
+// Assets\_Scripts\UI\SimulationStatsUI.cs
+
 using TMPro;
 using UnityEngine;
 using Simulator.SignalTiming;

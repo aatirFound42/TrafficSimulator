@@ -1,3 +1,5 @@
+//  Assets\_Scripts\SignalTimingAlgo\TrafficSignalMlAgent.cs
+
 using Simulator.TrafficSignal;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
@@ -107,6 +109,10 @@ namespace Simulator.SignalTiming {
             episodeCounter++;
             episodeStartTime = Time.time;
             // GameManager.Instance.TotalFuelUsed = 0f;
+            if (trafficLightSetup != null) {
+                var dataCalc = trafficLightSetup.GetComponent<IntersectionDataCalculator>();
+                if (dataCalc != null) dataCalc.ResetEpisodeMetrics();
+            }
         }
 
         // Method to log interval data
@@ -124,13 +130,13 @@ namespace Simulator.SignalTiming {
                         episodeCounter,
                         StepCount,
                         intersectionData.TotalNumberOfVehicles,
-                        intersectionData.TotalNumberOfVehiclesWaitingInIntersection,
+                        intersectionData.GetTotalLiveQueueLength(),
                         // GetCumulativeReward(),
                         Ml_data.rewards,
                         trafficLightSetup.CurrentPhaseIndex,
                         greenLightTime,
-                        intersectionData.GetAverageWaitTime(),
-                        intersectionData.GetWaitTimeVariance()
+                        intersectionData.GetCumulativeAverageWaitTime(),
+                        intersectionData.GetCumulativeWaitTimeVariance()
                     );
                 }
 
@@ -182,13 +188,13 @@ namespace Simulator.SignalTiming {
                     episodeLogger.LogRow(
                         episodeCounter,
                         intersectionData.TotalNumberOfVehicles,
-                        intersectionData.TotalNumberOfVehiclesWaitingInIntersection,
+                        intersectionData.GetTotalLiveQueueLength(),
                         Time.time - episodeStartTime,
                         Ml_data.rewards,
                         trafficLightSetup.CurrentPhaseIndex,
                         greenLightTime,
-                        intersectionData.GetAverageWaitTime(),
-                        intersectionData.GetWaitTimeVariance()
+                        intersectionData.GetCumulativeAverageWaitTime(),
+                        intersectionData.GetCumulativeWaitTimeVariance()
                     );
                 }
             }

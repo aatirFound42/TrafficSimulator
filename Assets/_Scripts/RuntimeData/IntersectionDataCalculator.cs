@@ -1,3 +1,5 @@
+// Assets\_Scripts\RuntimeData\IntersectionDataCalculator.cs
+
 using Simulator.RuntimeData;
 using Simulator.ScriptableObject;
 using System.Collections;
@@ -27,6 +29,10 @@ namespace Simulator.TrafficSignal {
         // private int vehiclesWaiting = 0;
         // Dictionary value: (legIndex, wait time at interection)
         //private readonly Dictionary<VehicleDataCalculator, (int, float)> vehiclesWaitingInIntersection = new();
+
+        private double cumulativeWaitTime = 0;
+        private double cumulativeSquaredWaitTime = 0;
+        private int totalVehiclesProcessed = 0;
 
         // Dictionary value: (wait time at interection)
         public readonly List<Dictionary<VehicleDataCalculator, float>> vehiclesWaitingAtLeg = new();
@@ -98,7 +104,14 @@ namespace Simulator.TrafficSignal {
                 if (vehiclesWaitingAtLeg[i].ContainsKey(vehicleDataCalculator)) {
                     float t = vehiclesWaitingAtLeg[i][vehicleDataCalculator];
                     vehiclesWaitingAtLeg[i].Remove(vehicleDataCalculator);
-                    waitTimeAtIntersection = Mathf.RoundToInt(vehicleDataCalculator.TotalWaitTime - t);
+                    
+                    float waitTime = vehicleDataCalculator.TotalWaitTime;
+                    waitTimeAtIntersection = Mathf.RoundToInt(waitTime - t);
+
+                    cumulativeWaitTime += waitTime;
+                    cumulativeSquaredWaitTime += (waitTime * waitTime);
+                    totalVehiclesProcessed++;
+
                     StoreData.WriteIntesectionWaitTime(Name, vehicleDataCalculator.name, waitTimeAtIntersection);
                     TotalNumberOfVehiclesWaitingInIntersection--;
                     vehiclesCleared++;
@@ -106,7 +119,7 @@ namespace Simulator.TrafficSignal {
                     // Debug.Log($"Vehicles Cleared: {vehiclesCleared}, TotalNumberOfVehiclesWaitingInIntersection: {TotalNumberOfVehiclesWaitingInIntersection}");
                     // Debug.Log($"Exited: Waiting={TotalNumberOfVehiclesWaitingInIntersection}");
                     // totalFuelConsumed += vehicleDataCalculator.FuelUsed;
-                    GameManager.Instance.TotalFuelUsed += vehicleDataCalculator.FuelUsed;
+                    // GameManager.Instance.TotalFuelUsed += vehicleDataCalculator.FuelUsed;
                     break;
                 }
 
@@ -160,6 +173,12 @@ namespace Simulator.TrafficSignal {
             }
         }
         
+        public float GetCumulativeAverageWaitTime() {
+            return totalVehiclesProcessed > 0 
+                ? (float)(cumulativeWaitTime / totalVehiclesProcessed) 
+                : 0f;
+        }
+
         public float GetAverageWaitTime() {
             float totalWait = 0f;
             int count = 0;
@@ -172,6 +191,14 @@ namespace Simulator.TrafficSignal {
             return count > 0 ? totalWait / count : 0f;
         }
 
+        public float GetCumulativeWaitTimeVariance() {
+            if (totalVehiclesProcessed <= 1) return 0f;
+            double mean = cumulativeWaitTime / totalVehiclesProcessed;
+            // Sample variance formula
+            double variance = (cumulativeSquaredWaitTime - (totalVehiclesProcessed * mean * mean)) / (totalVehiclesProcessed - 1);
+            return (float)variance;
+        }
+        
         public float GetWaitTimeVariance() {
             float avgWait = GetAverageWaitTime();
             if (avgWait == 0f) return 0f;
@@ -187,6 +214,22 @@ namespace Simulator.TrafficSignal {
             }
             // Using sample variance formula (N-1)
             return count > 1 ? sumOfSquaredDifferences / (count - 1) : 0f; 
+        }
+
+        public void ResetEpisodeMetrics() {
+            cumulativeWaitTime = 0;
+            cumulativeSquaredWaitTime = 0;
+            totalVehiclesProcessed = 0;
+            vehiclesCleared = 0;
+            TotalNumberOfVehicles = 0;
+        }
+
+        public int GetTotalLiveQueueLength() {
+            int total = 0;
+            for (int i = 0; i < LiveQueueLengths.Length; i++) {
+                total += LiveQueueLengths[i];
+            }
+            return total;
         }
 
         // public int GetVehiclesWaiting() {
